@@ -70,28 +70,3 @@ INNER JOIN Property AS p ON b.property_id = p.property_id
 LEFT JOIN Payment AS pay ON b.booking_id = pay.booking_id
 WHERE b.status IN ('confirmed', 'completed')
 ORDER BY b.start_date DESC;
-⚡ Performance Comparison
-Metric	Before	After
-Execution Time	~250ms	~40ms
-Scan Type	Sequential Scan	Index Scan
-Join Cost	High	Moderate
-Overall Performance	⚠️ Slow	✅ Optimized (≈6× faster)
-
-📊 Summary of Improvements
-Query execution time reduced by over 80%.
-
-Indexes enabled the query planner to use Index Scans instead of Full Table Scans.
-
-Reduced I/O load by limiting returned columns and filtered rows.
-
-Better JOIN efficiency through indexed foreign keys.
-
-🧠 Key Takeaways
-Indexes are crucial for JOIN-heavy queries.
-
-Always filter and project only what you need.
-
-Use EXPLAIN ANALYZE regularly to inspect query plans.
-
-Optimize ORDER BY operations using indexed fields.
-
