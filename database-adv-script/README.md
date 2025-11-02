@@ -130,3 +130,68 @@ IN operator with subqueries
 GROUP BY and HAVING for aggregation
 
 Correlated subqueries with table references
+
+# Airbnb Clone – Aggregations and Window Functions
+
+## 🎯 Objective
+This task demonstrates how to use **SQL aggregate functions** (like `COUNT`) and **window functions** (`RANK`, `ROW_NUMBER`) to analyze Airbnb database data.
+
+---
+
+## 📂 Files
+- **aggregations_and_window_functions.sql** – Contains the SQL queries for aggregation and ranking operations.
+
+---
+
+## 🧠 Queries Overview
+
+### 1️⃣ Total Number of Bookings per User
+This query counts how many bookings each user has made.
+
+```sql
+SELECT 
+    u.user_id,
+    u.first_name,
+    u.last_name,
+    COUNT(b.booking_id) AS total_bookings
+FROM User AS u
+LEFT JOIN Booking AS b 
+    ON u.user_id = b.user_id
+GROUP BY u.user_id, u.first_name, u.last_name
+ORDER BY total_bookings DESC;
+Result: Displays each user with the number of bookings they made, sorted by the highest first.
+
+2️⃣ Rank Properties by Number of Bookings
+This query ranks properties based on their booking popularity using a window function.
+
+sql
+Copy code
+SELECT 
+    p.property_id,
+    p.name AS property_name,
+    COUNT(b.booking_id) AS total_bookings,
+    RANK() OVER (ORDER BY COUNT(b.booking_id) DESC) AS booking_rank
+FROM Property AS p
+LEFT JOIN Booking AS b 
+    ON p.property_id = b.property_id
+GROUP BY p.property_id, p.name
+ORDER BY booking_rank;
+Result: Displays properties ranked from most to least booked.
+
+⚙️ How to Run
+To execute the queries, run:
+
+bash
+Copy code
+psql -d airbnb_clone_db -f aggregations_and_window_functions.sql
+or, in MySQL:
+
+bash
+Copy code
+mysql -u root -p airbnb_clone_db < aggregations_and_window_functions.sql
+🧩 Tables Used
+User
+
+Property
+
+Booking
