@@ -5,7 +5,7 @@
 -- ==============================================================
 
 -- --------------------------------------------------------------
--- 1️⃣ INITIAL QUERY (Before Optimization)
+1️⃣ INITIAL QUERY (Before Optimization)
 -- --------------------------------------------------------------
 
 SELECT 
@@ -37,7 +37,7 @@ ORDER BY b.created_at DESC;
 -- - ORDER BY can slow down performance if not indexed.
 
 -- --------------------------------------------------------------
--- EXPLAIN ANALYZE (Performance Analysis)
+EXPLAIN ANALYZE (Performance Analysis)
 -- --------------------------------------------------------------
 -- Run this in PostgreSQL or MySQL to evaluate query execution plan:
 EXPLAIN ANALYZE
@@ -70,7 +70,7 @@ ORDER BY b.created_at DESC;
 -- - Sorting operation due to ORDER BY on unindexed column
 
 -- --------------------------------------------------------------
--- 2️⃣ OPTIMIZED QUERY (After Refactoring)
+2️⃣ OPTIMIZED QUERY (After Refactoring)
 -- --------------------------------------------------------------
 
 -- Improvements:
@@ -102,7 +102,7 @@ ORDER BY b.start_date DESC;
 -- - Sorting now uses indexed column (b.start_date)
 
 -- --------------------------------------------------------------
--- EXPLAIN ANALYZE (After Optimization)
+EXPLAIN ANALYZE (After Optimization)
 -- --------------------------------------------------------------
 -- Run again:
 EXPLAIN ANALYZE
