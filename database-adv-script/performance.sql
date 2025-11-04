@@ -1,7 +1,7 @@
 -- ==============================================================
 -- Airbnb Clone - Query Performance Optimization
 -- File: perfomance.sql
--- Description: Retrieve all booking details with user, property, and payment info
+-- Description: Retrieve all booking details with user, property, and payment info.
 -- ==============================================================
 
 -- --------------------------------------------------------------
